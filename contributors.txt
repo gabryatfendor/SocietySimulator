@@ -1,0 +1,8 @@
+Developer:
+Gabriele Sani <mailto:gabrielesani@programmer.net>
+
+Ideas and Additions:
+Giorgio Tassinari <mailto:giorgiobiologist@gmail.com>
+
+Discussion about movement algorithms:
+Lorenzo La Spina <mailto:habaki90@gmail.com>
