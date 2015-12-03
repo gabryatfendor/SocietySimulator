@@ -7,7 +7,7 @@
 #ifndef UTILITIES_H
 #define UTILITIES_H
 
-/*Variabili globali*/
+/*Global variables*/
 extern Terrain map[WIDTH][HEIGHT];
 extern Person people[POPULATION];
 extern bool villagebuilded;
