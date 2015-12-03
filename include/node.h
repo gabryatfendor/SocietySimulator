@@ -1,4 +1,5 @@
 /*Courtesy of http://code.activestate.com/recipes/577457-a-star-shortest-path-algorithm*/
+/*Node class to do A**/
 #include <iomanip>
 #include <queue>
 #include <math.h>

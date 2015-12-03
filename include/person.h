@@ -7,7 +7,7 @@
 class Person
 {
 	public:
-        int sector; //0 taglialegna, 1 contadino, 2 pescatore, 3 minatore, 4 architetto
+        int sector; //0 woodcutter, 1 farmer, 2 fisher, 3 miner, 4 builder
         int tireness;
         int happiness;
         int position[2]; //x e y
