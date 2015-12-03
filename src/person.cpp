@@ -1,7 +1,10 @@
 #include <person.h>
 #include <utilities.h>
-/*FUNZIONI LAVORO*/
- 
+
+/*JOB Function*/
+/*All those functions check if the person is on a spot
+that it can work on. If that's true, the person starts working
+and depleting resources*/
  void Person::fishing(int i)
  {
 	 int x = people[i].position[0];
@@ -49,7 +52,7 @@
 		 }
 	 }
  }
- 
+
  void Person::mining(int i)
  {
 	 if(people[i].underme=='^')
@@ -68,6 +71,9 @@
 	 }
  }
  
+ /*This is a bit different from the others, it checks if there is enough wood stored.
+ If true and if no village has been built, it checks a random spot near water
+ and build the village here*/
  void Person::buildvillage(int i)
  {
 	 int k,j;
