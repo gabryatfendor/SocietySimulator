@@ -1,4 +1,7 @@
 /*courtesy of http://code.activestate.com/recipes/577457-a-star-shortest-path-algorithm*/
+/*The whole file implements A* algorithm and node class
+It will be improved, by now i need only basic movement
+and obstacle avoidance*/
 #include <node.h>
 #include <configuration.h>
 #include <utilities.h>
