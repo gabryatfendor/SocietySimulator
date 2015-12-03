@@ -1,6 +1,7 @@
 #include <utilities.h>
 #include <node.h>
 
+/*Main function down, recall the extern variables declared in src/utilities.cpp*/
 Terrain map[WIDTH][HEIGHT];
 Person people[POPULATION];
 bool villagebuilded=false;
