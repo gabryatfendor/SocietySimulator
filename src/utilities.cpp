@@ -1,6 +1,7 @@
 #include <utilities.h>
 
-/*Lanciata 1 volta per inizializzare la mappa*/
+/*This file will have to be refactored, is a mix up of functions*/
+/*Launched 1 time to initialize map checking configuration*/
 void init_map()
 {
 	if(MAX_LAKES>0)
@@ -14,13 +15,12 @@ void init_map()
        return;
 }
 
-/*Al momento ci sono 4 tipi di terreno:
-    a- pianura  .
-    b- mare     -
-    c- montagna ^
-    d- bosco    |
-    vengono creati piccoli gruppi dello stesso tipo
-    seguendo i define in configuration.h*/
+/*At the moment there are 4 kind of terrain:
+    a- plain  .
+    b- water     -
+    c- mountain ^
+    d- wood    |
+    small groups of the same type are created following DEFINE in configuration.h*/
 
 void set_water()
 {
@@ -107,7 +107,7 @@ void set_island()
 	 }
  }
  
-/*Stampa la mappa a schermo con i colori*/
+/*Print map to screen with colours*/
 void print_map()
 {
 	for(int j=0;j<HEIGHT;j++)
@@ -152,15 +152,7 @@ void print_map()
 	return;
 }
 
-/*-------------SOCIAL-------------------
-  * Parte sociale, per ora fa solo muovere
-  * gli omini, ma andra' implementato ogni 
-  * aspetto delle relazioni interpersonali
-  * e interculturali, oltre ai vari lavori 
-  * -------------------------------------*/
-  
-/*Assegnazione random dei punti di partenza delle varie persone*/
-
+/*Assigning random starting point for people*/
 void init_people()
 {
 	int x,y;
@@ -180,17 +172,17 @@ void init_people()
 	return;
 }
 
-/*Lanciata ogni volta che premi un tasto o in auto*/
+/*Launched every timestep*/
 void update()
 {
-	print_map();//stampo
+	print_map();
 	int k,x,y;
 	for(int i=0;i<POPULATION;i++)
 	{
 		if(people[i].moving==false && people[i].tested==false)
 		{
 			int destX, destY;
-			//choose destination
+			/*choose destination randomly, should be implemented a reason for moving*/
 			do
 			{
 				destX = rand() % WIDTH;
@@ -199,6 +191,7 @@ void update()
 			
 			people[i].destination[0]=destX;
 			people[i].destination[1]=destY;
+			//this is temporary to check if person reach destination
 			map[destX][destY].kind='X';
 			if(PATH_DEBUG)
 				std::cout << "Destination for " << i+1 << " set to " << people[i].destination[0] << " , " << people[i].destination[1] << std::endl; 
@@ -214,21 +207,20 @@ void update()
 		
 		else if(people[i].moving==true && people[i].tested==false)
 		{
-
 			//redo A* 
 			if(PATH_DEBUG)
 				std::cout << "REDO A* FOR " << i+1 << std::endl;
 			tellPathToPerson(i);
 			map[people[i].position[0]][people[i].position[1]].kind = people[i].underme;
 			map[people[i].position[0]][people[i].position[1]].walkable = true;
-			//scrivo le nuove posizioni nella struct
+			//write new position in struct
 			people[i].position[0]=people[i].path[people[i].pathIndex];
 			people[i].position[1]=people[i].path[people[i].pathIndex+1];	
 			people[i].underme=map[people[i].path[people[i].pathIndex]][people[i].path[people[i].pathIndex+1]].kind;
-			//disegno l'omino sulla mappa
+			//draw person on map
 			map[people[i].position[0]][people[i].position[1]].kind='@';
 			map[people[i].position[0]][people[i].position[1]].walkable = false;
-			//aggiorno indexPath
+			//update indexPath
 			people[i].pathIndex=people[i].pathIndex+2;
 		}
 	}
@@ -249,24 +241,24 @@ void tellPathToPerson(int personIndex)
     int tempY = people[personIndex].position[1];
     int j = 0;
     people[personIndex].pathIndex=0;
-    //1 in basso a dx
-    //2 in basso
-    //3 in basso a sx ecc ecc
+    //1 SE, 2 S, 3 SW etc. etc. 
+    //launch the A* from node.cpp
     completePath=pathFind(people[personIndex].position[0],people[personIndex].position[1],people[personIndex].destination[0],people[personIndex].destination[1]);
     if(PATH_DEBUG)
     {
-		std::cout << "Path returned from A* for " <<  personIndex+1 << " is " << completePath << std::endl;
-		std::cout << "Saved path for " << personIndex+1 << " with destination " << people[personIndex].destination[0]  << " , " << people[personIndex].position[1] << " is " << std::endl;
-	}
+	std::cout << "Path returned from A* for " <<  personIndex+1 << " is " << completePath << std::endl;
+	std::cout << "Saved path for " << personIndex+1 << " with destination " << people[personIndex].destination[0]  << " , " << people[personIndex].position[1] << " is " << std::endl;
+    }
     for(int i=0;i<completePath.length();i++)
     {
-		int switcher = completePath.at(i) - '0';
-        //trasferisco la path calcolata in quella che l'omino deve fare, ma tradotta in coppie di coordinate
+	int switcher = completePath.at(i) - '0';
+        //write calculated path into struct array, but translated in coord pair
         switch(completePath.at(i) - '0')
         {
-			case 0:
-				j=j-2;
-				break;
+	    case 0:
+	    	//THIS SHOULD NEVER HAPPEN! SOMETHING IS WRONG ON A*
+		j=j-2;
+		break;
             case 1:
                people[personIndex].path[j] = tempX+1;
                people[personIndex].path[j+1] = tempY+1;
@@ -315,7 +307,7 @@ void tellPathToPerson(int personIndex)
                 break;
         }
         if(PATH_DEBUG)
-			std::cout << people[personIndex].path[j] << " , " << people[personIndex].path[j+1] << ";";
+		std::cout << people[personIndex].path[j] << " , " << people[personIndex].path[j+1] << ";";
         j=j+2;
         
     }
