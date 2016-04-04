@@ -11,9 +11,6 @@ class Person
         int tireness;
         int happiness;
         int position[2]; //x e y
-        int destination[2]; //x e y
-        int path[500];
-        int pathIndex;
         char underme;
         bool working;
         bool moving;
@@ -25,7 +22,7 @@ class Person
         void mining(int i);
         void buildvillage(int i);
 	    
-        Person() : sector (rand() % 5), tireness(100), happiness(100), working(false), moving(false), pathIndex(0), tested(false){};
+        Person() : sector (rand() % 5), tireness(100), happiness(100), working(false), moving(false), tested(false){};
         ~Person() {};
 };
 #endif

@@ -2,7 +2,6 @@
 #include <configuration.h>
 #include <person.h>
 #include <terrain.h>
-#include <node.h>
 
 #ifndef UTILITIES_H
 #define UTILITIES_H
@@ -24,5 +23,4 @@ void set_mountain();
 void set_island();
 void print_map();
 void init_people();
-void tellPathToPerson(int personIndex);
 #endif
