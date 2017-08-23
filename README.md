@@ -1,6 +1,6 @@
 # SocietySimulator
 
-The intention is to recreate many social behaviour (starting from very basic like work and walk) and recreate interaction between 
+The intention is to recreate many social behaviour (starting from very basic like work and walk) and recreate interaction between
 various societies sharing the same territory, everything automated by a very basic AI.
 
 #### Installation
@@ -26,9 +26,8 @@ To clean output files
 ```bash
   make clean
 ```
-#### TODO:
+#### CONFIG:
 
-* The main task at the moment is to implement a smart moving algorithm. The one that I'm using at the moment it's working, but
-sometimes get stuck into walls (check [issue #1](https://github.com/gabryatfendor/SocietySimulator/issues/1) for more info);
-* Make a readable configuration file, so we don't have to change #define everytime (again, refer to [issue #4](https://github.com/gabryatfendor/SocietySimulator/issues/4));
-* Lastly, the application should become graphic. The sooner the better, so we don't have to rewrite a ton of code, since as per now we handle everything like a big console grid.
+Don't add any configuration except from the current one; you can
+still modify the current variables. The format should remain
+<variable> = <value>.

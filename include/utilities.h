@@ -1,9 +1,13 @@
 #include <iostream>
+#include <unistd.h>
+#include <vector>
+#include <fstream>
+#include <algorithm>
+
 #include <configuration.h>
 #include <person.h>
 #include <terrain.h>
-#include <unistd.h>
-#include <vector>
+
 
 #ifndef UTILITIES_H
 #define UTILITIES_H

@@ -1,7 +1,5 @@
 #include <string>
-#include <fstream>
 #include <vector>
-#include <algorithm>
 
 #ifndef CONFIGURATION_H
 #define CONFIGURATION_H
@@ -25,10 +23,12 @@
 #define KMAPISLAND		"map_island"
 #define KPATHDEBUG		"path_debug"
 
+using namespace std;
+
 class Configuration
 {
 	public:
-				std::vector<std::string> configFile;
+				vector<string> configFile;
         //Screen dimension
         int width;
         int height;
@@ -51,8 +51,8 @@ class Configuration
         bool path_debug;
 
 				//configuration file
-        std::vector<std::string> loadConfiguration(std::string filename);
-				int value_for_key(std::vector<std::string> file, std::string key);
+        vector<string> loadConfiguration(string filename);
+				int value_for_key(vector<string> file, string key);
 
         Configuration() : configFile(loadConfiguration("config")),
 				width(value_for_key(configFile, KWIDTH)), height(value_for_key(configFile, KHEIGHT)),

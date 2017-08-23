@@ -1,5 +1,7 @@
 #include <utilities.h>
 
+using namespace std;
+
 /*This file will have to be refactored, is a mix up of functions*/
 /*Launched 1 time to initialize map checking configuration*/
 void init_map()
@@ -116,23 +118,23 @@ void print_map()
 		{
 			if(map[i][j].kind=='-')
 			{
-				std::cout << "\033[1;36m-\033[0m";
+				cout << "\033[1;36m-\033[0m";
 			}
 			else if (map[i][j].kind=='^')
 			{
-				std::cout << "\033[1;31m^\033[0m";
+				cout << "\033[1;31m^\033[0m";
 			}
 			else if (map[i][j].kind=='|')
 			{
-				std::cout << "\033[1;32m|\033[0m";
+				cout << "\033[1;32m|\033[0m";
 			}
 			else if (map[i][j].kind=='@')
 			{
-				std::cout << "\033[1;35m@\033[0m";
+				cout << "\033[1;35m@\033[0m";
 			}
 			else if (map[i][j].kind=='c')
 			{
-				std::cout << "\033[1m@\033[0m";
+				cout << "\033[1m@\033[0m";
 			}
 			else if (map[i][j].kind=='x')
 			{
@@ -141,14 +143,14 @@ void print_map()
 				{
 					map[i][j].kind=map[i][j].origin;
 				}
-				std::cout << "x";
+				cout << "x";
 			}
 			else
-				std::cout << "\033[1m"<<map[i][j].kind<<"\033[0m";
+				cout << "\033[1m"<<map[i][j].kind<<"\033[0m";
 		}
-		std::cout << "\n";
+		cout << "\n";
 	}
-	std::cout << "Fish: " << fish << "    Wood: " << wood << "    Food: " << food << "    Stone: " << stone << "\n";
+	cout << "Fish: " << fish << "    Wood: " << wood << "    Food: " << food << "    Stone: " << stone << "\n";
 	return;
 }
 
