@@ -1,6 +1,6 @@
 #include <utilities.h>
 
-/*Main function down, recall the extern variables declared in src/utilities.cpp*/
+Configuration cfg;
 Terrain map[WIDTH][HEIGHT];
 Person people[POPULATION];
 bool villagebuilded=false;
@@ -18,6 +18,6 @@ int main()
     {
         update();
     }
-    
-    return 0;   
+
+    return 0;
 }

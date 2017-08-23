@@ -2,11 +2,14 @@
 #include <configuration.h>
 #include <person.h>
 #include <terrain.h>
+#include <unistd.h>
+#include <vector>
 
 #ifndef UTILITIES_H
 #define UTILITIES_H
 
 /*Global variables*/
+extern Configuration cfg;
 extern Terrain map[WIDTH][HEIGHT];
 extern Person people[POPULATION];
 extern bool villagebuilded;
@@ -23,4 +26,5 @@ void set_mountain();
 void set_island();
 void print_map();
 void init_people();
+
 #endif

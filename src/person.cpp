@@ -9,16 +9,16 @@ and depleting resources*/
  {
 	 int x = people[i].position[0];
 	 int y = people[i].position[1];
-	 
+
 	 if(map[x-1][y].kind=='-'||map[x][y-1].kind=='-'||map[x][y+1].kind=='-'||map[x+1][y].kind=='-')
 	 {
 		 people[i].working = true;
 		 fish++;
 	 }
  }
- 
+
  void Person::woodcutting(int i)
- {	 
+ {
 	 if(people[i].underme=='|')
 	 {
 		 int x = people[i].position[0];
@@ -34,7 +34,7 @@ and depleting resources*/
 		 }
 	 }
  }
- 
+
  void Person::farming(int i)
  {
 	 if(people[i].underme=='.')
@@ -70,7 +70,7 @@ and depleting resources*/
 		 }
 	 }
  }
- 
+
  /*This is a bit different from the others, it checks if there is enough wood stored.
  If true and if no village has been built, it checks a random spot near water
  and build the village here*/
@@ -80,7 +80,7 @@ and depleting resources*/
 	 if(wood>=200)
 	 {
 		 //choose where to build, possibly near water
-		 if(MAP_ISLAND==0)
+		 if(cfg.map_island==0)
 		 {
 			 j=0;
 			 k=0;
@@ -90,7 +90,7 @@ and depleting resources*/
 			 j=rand() % HEIGHT+1;
 			 k=rand() % WIDTH+1;
 		 }
-		  
+
 		 for(;j<HEIGHT;j++)
 		 {
 			 for(;k<WIDTH;k++)

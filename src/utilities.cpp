@@ -4,15 +4,15 @@
 /*Launched 1 time to initialize map checking configuration*/
 void init_map()
 {
-	if(MAX_LAKES>0)
+	if(cfg.max_lakes>0)
 		set_water();
-	if(MAX_WOODS>0)
+	if(cfg.max_woods>0)
 		set_wood();
-	if(MAX_MOUNTAINS>0)
+	if(cfg.max_mountains>0)
 		set_mountain();
-    if(MAP_ISLAND)
-        set_island();
-       return;
+  if(cfg.map_island)
+    set_island();
+  return;
 }
 
 /*At the moment there are 4 kind of terrain:
@@ -24,10 +24,10 @@ void init_map()
 
 void set_water()
 {
-    int lakes = rand() % MAX_LAKES + 1;
+    int lakes = rand() % cfg.max_lakes + 1;
     for(int i=0;i<lakes;i++)
     {
-        int ray = rand() % MAX_LAKES_RAY + 1;
+        int ray = rand() % cfg.max_lakes_ray + 1;
         int x = rand() % ((WIDTH-(ray-1))-ray);
         int y = rand() % ((HEIGHT-(ray-1))-ray);
         for(int j=x-ray;j<x+ray;j++)
@@ -45,12 +45,12 @@ void set_water()
 
 void set_wood()
 {
-	int woods = rand() % MAX_WOODS + 3;
-	
+	int woods = rand() % cfg.max_woods + 3;
+
 	for(int i=0;i<woods;i++)
 	{
 		/*set ray*/
-		int ray = rand() % MAX_WOODS_RAY + 1;
+		int ray = rand() % cfg.max_woods_ray + 1;
 		/*choose center*/
 		int x = rand() % ((WIDTH-(ray-1))-ray)+ray;
 		int y = rand() % ((HEIGHT-(ray-1))-ray)+ray;
@@ -63,16 +63,16 @@ void set_wood()
 				map[j][k].origin='|';
 			}
 		}
-	 }	 	
+	 }
 }
 
 void set_mountain()
 {
-	int mountains = rand() % MAX_MOUNTAINS + 1;
+	int mountains = rand() % cfg.max_mountains + 1;
 	for(int i=0;i<mountains;i++)
 	{
 		/*set ray*/
-		int ray = rand() % MAX_MOUNTAINS_RAY + 1;
+		int ray = rand() % cfg.max_mountains_ray + 1;
 		/*choose center*/
 		int x = rand() % ((WIDTH-(ray-1))-ray)+ray;
 		int y = rand() % ((HEIGHT-(ray-1))-ray)+ray;
@@ -85,12 +85,12 @@ void set_mountain()
 				map[j][k].origin='^';
 			}
 		}
-	 }	 
+	 }
 }
 
 void set_island()
 {
-	if(MAP_ISLAND)
+	if(cfg.map_island)
 	 {
 		 for(int i=0;i<WIDTH;i++)
 		 {
@@ -102,11 +102,11 @@ void set_island()
 					map[i][j].origin = '-';
 					map[i][j].walkable=false;
 				}
-			}	
+			}
 		 }
 	 }
  }
- 
+
 /*Print map to screen with colours*/
 void print_map()
 {
@@ -163,7 +163,7 @@ void init_people()
 			x = rand() % WIDTH;
 			y = rand() % HEIGHT;
 		} while(map[x][y].kind=='@' || map[x][y].kind=='-');
-			
+
 		people[k].position[0]=x;
 		people[k].position[1]=y;
 		people[k].underme=map[x][y].kind;
@@ -188,11 +188,11 @@ void update()
 				destX = rand() % WIDTH;
 				destY = rand() % HEIGHT;
 			}while(map[destX][destY].walkable==false);
-			
-			
+
+
 			people[i].moving=true;
 		}
-		
+
 		else
 		{
 			map[people[i].position[0]][people[i].position[1]].kind = people[i].underme;
@@ -202,12 +202,11 @@ void update()
 			map[people[i].position[0]][people[i].position[1]].walkable = false;
 		}
 	}
-	
-	if(AUTO)
-		sleep(SPEED);
+
+	if(cfg.automated)
+		sleep(cfg.speed);
 	else
 		getchar();
 	system("clear");
 	return;
 }
-

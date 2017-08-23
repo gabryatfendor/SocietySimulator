@@ -1,0 +1,31 @@
+#TODO: at the moment width, height and population are not read from
+#this file, but from configuration.h. As soon as I can make map and population
+#array singletoned, I will remove these define
+
+#World map dimension in cells
+WIDTH = 80
+HEIGHT = 20
+
+#People running around
+POPULATION = 5
+
+#Maximum natural features for each kind
+MAX_LAKES = 10
+MAX_MOUNTAINS = 10
+MAX_WOODS = 10
+
+#Maximum ray from the center of each natural feature
+MAX_LAKES_RAY = 6
+MAX_MOUNTAINS_RAY = 6
+MAX_WOODS_RAY = 6
+
+#If automated == 0, press a button to proceed at every turn. Otherwise
+#automated proceeding every #speed seconds
+AUTOMATED = 0
+SPEED = 1
+
+#Kind of world
+MAP_ISLAND = 0
+
+#Variable enabling/disabling DEBUG
+PATH_DEBUG = 0
