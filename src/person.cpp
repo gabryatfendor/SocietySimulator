@@ -97,3 +97,19 @@ and depleting resources*/
 		 }
 	 }
  }
+
+/*TODO: this method should move the person along a path already
+designed. At the moment it's just increasing x and y of the
+person until it hit the map border*/
+ void Person::move()
+ {
+   map[this->position[0]][this->position[1]].villagerHere = false;
+   //move random
+   if(position[0] < WIDTH-1)
+    this->position[0]++;
+   if(position[1] < HEIGHT-1)
+    this->position[1]++;
+
+   this->underme = map[this->position[0]][this->position[1]].kind;
+   map[this->position[0]][this->position[1]].villagerHere = true;
+ }

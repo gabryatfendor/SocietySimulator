@@ -20,6 +20,7 @@ class Person
         void woodcutting();
         void mining();
         void buildvillage();
+				void move();
 
         Person() : sector (rand() % 5), tireness(100), happiness(100), working(false), moving(false), tested(false){};
         ~Person() {};

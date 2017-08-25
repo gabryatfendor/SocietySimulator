@@ -9,26 +9,7 @@ void update()
 	int k,x,y;
 	for(int i=0;i<POPULATION;i++)
 	{
-		if(people[i].moving==false)
-		{
-			int destX, destY;
-			/*choose destination randomly, should be implemented a reason for moving*/
-			do
-			{
-				destX = rand() % WIDTH;
-				destY = rand() % HEIGHT;
-			}while(map[destX][destY].walkable==false);
-
-			people[i].moving=true;
-		}
-		else
-		{
-			map[people[i].position[0]][people[i].position[1]].kind = people[i].underme;
-			map[people[i].position[0]][people[i].position[1]].walkable = true;
-			//draw person on map
-			map[people[i].position[0]][people[i].position[1]].kind='@';
-			map[people[i].position[0]][people[i].position[1]].walkable = false;
-		}
+		people[i].move();
 	}
 
 	if(cfg.automated)
@@ -153,37 +134,40 @@ void set_island()
  	{
  		for(int i=0;i<WIDTH;i++)
  		{
- 			if(map[i][j].kind=='-')
- 			{
- 				cout << "\033[1;36m-\033[0m";
- 			}
- 			else if (map[i][j].kind=='^')
- 			{
- 				cout << "\033[1;31m^\033[0m";
- 			}
- 			else if (map[i][j].kind=='|')
- 			{
- 				cout << "\033[1;32m|\033[0m";
- 			}
- 			else if (map[i][j].kind=='@')
+			if (map[i][j].villagerHere)
  			{
  				cout << "\033[1;35m@\033[0m";
  			}
- 			else if (map[i][j].kind=='c')
- 			{
- 				cout << "\033[1m@\033[0m";
- 			}
- 			else if (map[i][j].kind=='x')
- 			{
- 				map[i][j].usable++;
- 				if(map[i][j].usable>=100)
- 				{
- 					map[i][j].kind=map[i][j].origin;
- 				}
- 				cout << "x";
- 			}
- 			else
- 				cout << "\033[1m"<<map[i][j].kind<<"\033[0m";
+			else
+			{
+	 			if(map[i][j].kind=='-')
+	 			{
+	 				cout << "\033[1;36m-\033[0m";
+	 			}
+	 			else if (map[i][j].kind=='^')
+	 			{
+	 				cout << "\033[1;31m^\033[0m";
+	 			}
+	 			else if (map[i][j].kind=='|')
+	 			{
+	 				cout << "\033[1;32m|\033[0m";
+	 			}
+	 			else if (map[i][j].kind=='c')
+	 			{
+	 				cout << "\033[1m@\033[0m";
+	 			}
+	 			else if (map[i][j].kind=='x')
+	 			{
+	 				map[i][j].usable++;
+	 				if(map[i][j].usable>=100)
+	 				{
+	 					map[i][j].kind=map[i][j].origin;
+	 				}
+	 				cout << "x";
+	 			}
+	 			else
+	 				cout << "\033[1m"<<map[i][j].kind<<"\033[0m";
+			}
  		}
  		cout << "\n";
  	}
@@ -201,12 +185,12 @@ void set_island()
  		{
  			x = rand() % WIDTH;
  			y = rand() % HEIGHT;
- 		} while(map[x][y].kind=='@' || map[x][y].kind=='-');
+ 		} while(map[x][y].villagerHere || map[x][y].kind=='-');
 
  		people[k].position[0]=x;
  		people[k].position[1]=y;
  		people[k].underme=map[x][y].kind;
- 		map[x][y].kind='@';
+ 		map[x][y].villagerHere=true;
  	}
  	return;
  }

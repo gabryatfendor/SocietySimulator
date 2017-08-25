@@ -9,7 +9,9 @@ class Terrain
 		int usable;
 		bool isregenerating;
 		bool walkable;
-		Terrain() : origin('.'),kind('.'), usable(100), isregenerating(false), walkable(true) {};
+		bool villagerHere;
+		Terrain() : origin('.'),kind('.'), usable(100),
+		isregenerating(false), walkable(true), villagerHere(false) {};
 		~Terrain() {};
 };
 #endif
