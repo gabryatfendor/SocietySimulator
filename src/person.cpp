@@ -22,7 +22,7 @@ and depleting resources*/
 		 this->working = true;
 		 wood++;
 		 map[x][y].usable-=25;
-		 if(map[x][y].usable==0)
+		 if(map[x][y].usable<=0)
 		 {
 			 this->working=false;
 			 this->underme='x';
@@ -40,7 +40,7 @@ and depleting resources*/
 		 this->working = true;
 		 food++;
 		 map[x][y].usable-=25;
-		 if(map[x][y].usable==0)
+		 if(map[x][y].usable<=0)
 		 {
 			 this->working=false;
 			 this->underme='x';
@@ -58,7 +58,7 @@ and depleting resources*/
 		 this->working = true;
 		 stone++;
 		 map[x][y].usable-=25;
-		 if(map[x][y].usable==0)
+		 if(map[x][y].usable<=0)
 		 {
 			 this->working=false;
 			 this->underme='x';
@@ -72,34 +72,26 @@ and depleting resources*/
  and build the village here*/
  void Person::buildvillage()
  {
-	 int k,j;
-	 if(wood>=200)
+	 int k=0, j=0;
+	 //choose where to build, possibly near water
+	 if(cfg.map_island)
 	 {
-		 //choose where to build, possibly near water
-		 if(cfg.map_island==0)
-		 {
-			 j=0;
-			 k=0;
-		 }
-		 else
-		 {
-			 j=rand() % HEIGHT+1;
-			 k=rand() % WIDTH+1;
-		 }
+     j=rand() % HEIGHT+1;
+		 k=rand() % WIDTH+1;
+	 }
 
-		 for(;j<HEIGHT;j++)
+	 for(;j<HEIGHT;j++)
+	 {
+		 for(;k<WIDTH;k++)
 		 {
-			 for(;k<WIDTH;k++)
+			 if(map[k][j].origin=='.' && !villagebuilded)
 			 {
-				 if(map[k][j].origin=='.' && villagebuilded==false)
+				 if(checkAroundOrigin(k, j, '-'))
 				 {
-					 if(checkAroundOrigin(k, j, '-'))
-					 {
-						 //set village here
-						 villagebuilded=true;
-						 wood=wood-200;
-						 map[k][j].kind='V';
-					 }
+					 //set village here
+					 villagebuilded=true;
+					 wood-=200;
+					 map[k][j].kind='V';
 				 }
 			 }
 		 }
