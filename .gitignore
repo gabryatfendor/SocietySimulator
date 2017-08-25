@@ -31,3 +31,5 @@
 *.out
 *.app
 
+# Config file
+config
