@@ -29,5 +29,5 @@ To clean output files
 #### CONFIG:
 
 Don't add any configuration except from the current one; you can
-still modify the current variables. The format should remain
-<variable> = <value>.
+still modify the current variables. The format must remain
+*variable* = *value*.
