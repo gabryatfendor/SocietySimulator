@@ -26,9 +26,10 @@ vector<string> Configuration::loadConfiguration(string filename)
   return cfg;
 }
 
-int Configuration::value_for_key(vector<string> file, string key)
+int Configuration::valueForKey(string key)
 {
   int value = 0;
+  vector<string> file = this->configFile;
   vector<string>::iterator it;
   for(it = file.begin();it < file.end();it++)
   {

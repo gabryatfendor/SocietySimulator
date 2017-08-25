@@ -6,4 +6,4 @@ INC=./include
 all:
 	$(CC) -I$(INC) src/utilities.cpp src/map.cpp src/configuration.cpp src/person.cpp src/societysimulator.cpp -o SocietySimulator.out
 clean:
-	rm *.out
+	rm -f *.out

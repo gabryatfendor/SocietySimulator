@@ -3,7 +3,7 @@
 Configuration cfg;
 Terrain map[WIDTH][HEIGHT];
 Person people[POPULATION];
-bool villagebuilded=false;
+bool villageBuilded=false;
 int wood=0;
 int fish=0;
 int food=0;
@@ -12,8 +12,8 @@ int stone=0;
 int main()
 {
     srand(time(NULL));
-    init_map();
-    init_people();
+    initMap();
+    initPeople();
     while(true)
     {
         update();

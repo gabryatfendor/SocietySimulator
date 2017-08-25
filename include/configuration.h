@@ -35,33 +35,33 @@ class Configuration
         //People running around
         int population;
         //Max number of natural features
-        int max_lakes;
-        int max_mountains;
-        int max_woods;
+        int maxLakes;
+        int maxMountains;
+        int maxWoods;
         //Max ray of each feature
-        int max_lakes_ray;
-        int max_mountains_ray;
-        int max_woods_ray;
+        int maxLakesRay;
+        int maxMountainsRay;
+        int maxWoodsRay;
         //if automated, step every #speed seconds, otherwise press a button to proceed
         bool automated;
         int speed;
         //Do we want an island?
-        bool map_island;
+        bool mapIsland;
         //Enable debug for pathing algorithm
-        bool path_debug;
+        bool pathDebug;
 
 				//configuration file
         vector<string> loadConfiguration(string filename);
-				int value_for_key(vector<string> file, string key);
-
+				int valueForKey(string key);
+				
         Configuration() : configFile(loadConfiguration("config")),
-				width(value_for_key(configFile, KWIDTH)), height(value_for_key(configFile, KHEIGHT)),
-				population(value_for_key(configFile, KPOPULATION)), max_lakes(value_for_key(configFile, KMAXLAKES)),
-				max_mountains(value_for_key(configFile, KMAXMOUNTAINS)), max_woods(value_for_key(configFile, KMAXWOODS)),
-				max_lakes_ray(value_for_key(configFile, KLAKESRAY)), max_mountains_ray(value_for_key(configFile, KMOUNTAINSRAY)),
-				max_woods_ray(value_for_key(configFile, KWOODSRAY)), automated(value_for_key(configFile, KAUTOMATED)),
-				speed(value_for_key(configFile, KSPEED)), map_island(value_for_key(configFile, KMAPISLAND)),
-				path_debug(value_for_key(configFile, KPATHDEBUG)){};
+				width(valueForKey(KWIDTH)), height(valueForKey(KHEIGHT)),
+				population(valueForKey(KPOPULATION)), maxLakes(valueForKey(KMAXLAKES)),
+				maxMountains(valueForKey(KMAXMOUNTAINS)), maxWoods(valueForKey(KMAXWOODS)),
+				maxLakesRay(valueForKey(KLAKESRAY)), maxMountainsRay(valueForKey(KMOUNTAINSRAY)),
+				maxWoodsRay(valueForKey(KWOODSRAY)), automated(valueForKey(KAUTOMATED)),
+				speed(valueForKey(KSPEED)), mapIsland(valueForKey(KMAPISLAND)),
+				pathDebug(valueForKey(KPATHDEBUG)){};
         ~Configuration() {};
 };
 #endif

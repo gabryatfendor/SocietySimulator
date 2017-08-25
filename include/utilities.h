@@ -16,7 +16,7 @@
 extern Configuration cfg;
 extern Terrain map[WIDTH][HEIGHT];
 extern Person people[POPULATION];
-extern bool villagebuilded;
+extern bool villageBuilded;
 extern int wood;
 extern int fish;
 extern int food;

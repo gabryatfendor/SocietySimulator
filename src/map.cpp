@@ -5,7 +5,7 @@ using namespace std;
 /*Launched every timestep*/
 void update()
 {
-	print_map();
+	printMap();
 	int k,x,y;
 	for(int i=0;i<POPULATION;i++)
 	{
@@ -22,16 +22,16 @@ void update()
 
 /*This file will have to be refactored, is a mix up of functions*/
 /*Launched 1 time to initialize map checking configuration*/
-void init_map()
+void initMap()
 {
-	if(cfg.max_lakes>0)
-		set_water();
-	if(cfg.max_woods>0)
-		set_wood();
-	if(cfg.max_mountains>0)
-		set_mountain();
-  if(cfg.map_island)
-    set_island();
+	if(cfg.maxLakes>0)
+		setWater();
+	if(cfg.maxWoods>0)
+		setWood();
+	if(cfg.maxMountains>0)
+		setMountain();
+  if(cfg.mapIsland)
+    setIsland();
   return;
 }
 
@@ -42,12 +42,12 @@ void init_map()
     d- wood    |
     small groups of the same type are created following DEFINE in configuration.h*/
 
-void set_water()
+void setWater()
 {
-    int lakes = rand() % cfg.max_lakes + 1;
+    int lakes = rand() % cfg.maxLakes + 1;
     for(int i=0;i<lakes;i++)
     {
-        int ray = rand() % cfg.max_lakes_ray + 1;
+        int ray = rand() % cfg.maxLakesRay + 1;
         int x = rand() % ((WIDTH-(ray-1))-ray);
         int y = rand() % ((HEIGHT-(ray-1))-ray);
         for(int j=x-ray;j<x+ray;j++)
@@ -63,14 +63,14 @@ void set_water()
     return;
 }
 
-void set_wood()
+void setWood()
 {
-	int woods = rand() % cfg.max_woods + 3;
+	int woods = rand() % cfg.maxWoods + 3;
 
 	for(int i=0;i<woods;i++)
 	{
 		/*set ray*/
-		int ray = rand() % cfg.max_woods_ray + 1;
+		int ray = rand() % cfg.maxWoodsRay + 1;
 		/*choose center*/
 		int x = rand() % ((WIDTH-(ray-1))-ray)+ray;
 		int y = rand() % ((HEIGHT-(ray-1))-ray)+ray;
@@ -86,13 +86,13 @@ void set_wood()
 	 }
 }
 
-void set_mountain()
+void setMountain()
 {
-	int mountains = rand() % cfg.max_mountains + 1;
+	int mountains = rand() % cfg.maxMountains + 1;
 	for(int i=0;i<mountains;i++)
 	{
 		/*set ray*/
-		int ray = rand() % cfg.max_mountains_ray + 1;
+		int ray = rand() % cfg.maxMountainsRay + 1;
 		/*choose center*/
 		int x = rand() % ((WIDTH-(ray-1))-ray)+ray;
 		int y = rand() % ((HEIGHT-(ray-1))-ray)+ray;
@@ -108,9 +108,9 @@ void set_mountain()
 	 }
 }
 
-void set_island()
+void setIsland()
 {
-	if(cfg.map_island)
+	if(cfg.mapIsland)
 	 {
 		 for(int i=0;i<WIDTH;i++)
 		 {
@@ -128,7 +128,7 @@ void set_island()
  }
 
  /*Print map to screen with colours*/
- void print_map()
+ void printMap()
  {
  	for(int j=0;j<HEIGHT;j++)
  	{
@@ -176,7 +176,7 @@ void set_island()
  }
 
  /*Assigning random starting point for people*/
- void init_people()
+ void initPeople()
  {
  	int x,y;
  	for(int k=0;k<POPULATION;k++)
@@ -189,7 +189,7 @@ void set_island()
 
  		people[k].position[0]=x;
  		people[k].position[1]=y;
- 		people[k].underme=map[x][y].kind;
+ 		people[k].underMe=map[x][y].kind;
  		map[x][y].villagerHere=true;
  	}
  	return;

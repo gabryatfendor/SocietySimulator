@@ -2,12 +2,12 @@
 #define MAP_H
 
 void update();
-void init_map();
-void set_water();
-void set_wood();
-void set_mountain();
-void set_island();
-void print_map();
-void init_people();
+void initMap();
+void setWater();
+void setWood();
+void setMountain();
+void setIsland();
+void printMap();
+void initPeople();
 
 #endif
