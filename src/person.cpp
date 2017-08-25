@@ -6,10 +6,7 @@ that it can work on. If that's true, the person starts working
 and depleting resources*/
  void Person::fishing()
  {
-	 int x = this->position[0];
-	 int y = this->position[1];
-
-	 if(map[x-1][y].kind=='-'||map[x][y-1].kind=='-'||map[x][y+1].kind=='-'||map[x+1][y].kind=='-')
+	 if(checkAround(this->position[0],this->position[1],'-'))
 	 {
 		 this->working = true;
 		 fish++;
@@ -24,7 +21,7 @@ and depleting resources*/
 		 int y = this->position[1];
 		 this->working = true;
 		 wood++;
-		 map[x][y].usable=map[x][y].usable-25;
+		 map[x][y].usable-=25;
 		 if(map[x][y].usable==0)
 		 {
 			 this->working=false;
@@ -42,7 +39,7 @@ and depleting resources*/
 		 int y = this->position[1];
 		 this->working = true;
 		 food++;
-		 map[x][y].usable=map[x][y].usable-25;
+		 map[x][y].usable-=25;
 		 if(map[x][y].usable==0)
 		 {
 			 this->working=false;
@@ -60,7 +57,7 @@ and depleting resources*/
 		 int y = this->position[1];
 		 this->working = true;
 		 stone++;
-		 map[x][y].usable=map[x][y].usable-25;
+		 map[x][y].usable-=25;
 		 if(map[x][y].usable==0)
 		 {
 			 this->working=false;
@@ -96,31 +93,12 @@ and depleting resources*/
 			 {
 				 if(map[k][j].origin=='.' && villagebuilded==false)
 				 {
-					 if(map[k-1][j].origin=='-'||map[k][j-1].origin=='-'||map[k][j+1].origin=='-'||map[k+1][j].origin=='-')
+					 if(checkAroundOrigin(k, j, '-'))
 					 {
 						 //set village here
 						 villagebuilded=true;
 						 wood=wood-200;
 						 map[k][j].kind='V';
-					 }
-				 }
-			 }
-		 }
-		 if(villagebuilded==false)
-		 {
-			 for(int j=0;j<HEIGHT;j++)
-			 {
-				 for(int i=0;i<WIDTH;i++)
-				 {
-					 if(map[i][j].origin=='.' && villagebuilded==false)
-					 {
-						 if(map[i-1][j].origin=='-'||map[i][j-1].origin=='-'||map[i][j+1].origin=='-'||map[i+1][j].origin=='-')
-						 {
-							 //set village here
-							 villagebuilded=true;
-							 wood=wood-200;
-							 map[i][j].kind='V';
-						 }
 					 }
 				 }
 			 }

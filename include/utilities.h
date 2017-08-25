@@ -30,5 +30,7 @@ void set_mountain();
 void set_island();
 void print_map();
 void init_people();
+bool checkAround(int x, int y, char check);
+bool checkAroundOrigin(int x, int y, char check);
 
 #endif
