@@ -15,11 +15,11 @@ class Person
         bool moving;
         bool tested;
 
-        void fishing(int i);
-        void farming(int i);
-        void woodcutting(int i);
-        void mining(int i);
-        void buildvillage(int i);
+        void fishing();
+        void farming();
+        void woodcutting();
+        void mining();
+        void buildvillage();
 
         Person() : sector (rand() % 5), tireness(100), happiness(100), working(false), moving(false), tested(false){};
         ~Person() {};

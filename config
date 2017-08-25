@@ -7,7 +7,7 @@ WIDTH = 80
 HEIGHT = 20
 
 #People running around
-POPULATION = 5
+POPULATION = 1
 
 #Maximum natural features for each kind
 MAX_LAKES = 10
