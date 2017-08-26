@@ -31,3 +31,10 @@ To clean output files
 Don't add any configuration except from the current one; you can
 still modify the current variables. The format must remain
 *variable* = *value*.
+
+#### DOCUMENTATION
+A Doxyfile for [Doxygen](http://www.stack.nl/~dimitri/doxygen/index.html) documentation is available. To build it check that Doxygen is installed on your system and the documentation for yuor OS. On UNIX-like system, for example, it's enough to launch the command
+```bash
+  doxygen Doxyfile
+```
+while in the root folder. Documentation will be available in a new created folder doc. The default it's to build it only in HTML format, but you can modify the configuration as you wish.

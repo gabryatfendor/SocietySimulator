@@ -33,3 +33,6 @@
 
 # Config file
 /config
+
+# Documentation folder
+/doc

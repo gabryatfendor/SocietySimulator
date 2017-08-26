@@ -1,3 +1,16 @@
+/**
+ * \file configuration.h
+ * \class Configuration
+ * \brief Handles the configuration file.
+ *
+ *  This class has one variable for every key in the
+ *	configuration file.
+ * \author Gabriele Sani (gabryatfendor@gmail.com)
+ *
+ * \version 0.1
+ * \date 25 Aug 2017
+ */
+
 #include <string>
 #include <vector>
 
@@ -28,32 +41,34 @@ using namespace std;
 class Configuration
 {
 	public:
-				vector<string> configFile;
-        //Screen dimension
-        int width;
-        int height;
-        //People running around
-        int population;
-        //Max number of natural features
-        int maxLakes;
-        int maxMountains;
-        int maxWoods;
-        //Max ray of each feature
-        int maxLakesRay;
-        int maxMountainsRay;
-        int maxWoodsRay;
-        //if automated, step every #speed seconds, otherwise press a button to proceed
-        bool automated;
+				vector<string> configFile;  /**< Every vector element is a line of the config file */
+        int width; /**< Grid width */
+        int height; /**< Grid height */
+        int population; /**< People running around */
+        int maxLakes; /**< Max number of lakes */
+        int maxMountains; /**< Max number of mountains */
+        int maxWoods; /**< Max number of woods */
+        int maxLakesRay; /**< Max ray of any lake */
+        int maxMountainsRay; /**< Max ray of any mountain */
+        int maxWoodsRay; /**< Max ray of any wood */
+        bool automated; /**< If true update is called every #speed seconds */
         int speed;
-        //Do we want an island?
-        bool mapIsland;
-        //Enable debug for pathing algorithm
-        bool pathDebug;
+        bool mapIsland; /**< If tue map will be an island */
+        bool pathDebug; /**< If true enables verbose mode for pathing algorithm*/
 
-				//configuration file
+				/*! \brief Transfer all the config file in configFile variable*/
+				/*!
+					\sa loadConfiguration()
+					\param filename path to the file to be loaded.
+				*/
         vector<string> loadConfiguration(string filename);
+				/*! \brief Extract value associated to key from configFile*/
+				/*!
+					\sa valueForKey()
+					\param key key associated to the value to be extracted.
+				*/
 				int valueForKey(string key);
-				
+
         Configuration() : configFile(loadConfiguration("config")),
 				width(valueForKey(KWIDTH)), height(valueForKey(KHEIGHT)),
 				population(valueForKey(KPOPULATION)), maxLakes(valueForKey(KMAXLAKES)),
