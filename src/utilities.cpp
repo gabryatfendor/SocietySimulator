@@ -29,3 +29,8 @@ bool checkAroundOrigin(int x, int y, char check)
 
 	 return isCheckAroundMe;
 }
+
+int randBetween(int max, int min)
+{
+	return rand() % (max-min+1)+min;
+}

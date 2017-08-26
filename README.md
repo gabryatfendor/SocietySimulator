@@ -26,6 +26,14 @@ To clean output files
 ```bash
   make clean
 ```
+
+##### Debug
+To build in debug mode simply
+```bash
+  make debug
+```
+In this way gdb will be available.
+
 #### CONFIG:
 
 Don't add any configuration except from the current one; you can

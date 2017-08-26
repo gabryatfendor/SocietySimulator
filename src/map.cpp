@@ -48,8 +48,8 @@ void setWater()
     for(int i=0;i<lakes;i++)
     {
         int ray = rand() % cfg.maxLakesRay + 1;
-        int x = rand() % ((WIDTH-(ray-1))-ray);
-        int y = rand() % ((HEIGHT-(ray-1))-ray);
+				int x = randBetween(WIDTH-ray, ray);
+				int y = randBetween(HEIGHT-ray, ray);
         for(int j=x-ray;j<x+ray;j++)
         {
             for(int k=y-ray;k<y+ray;k++)
@@ -72,8 +72,8 @@ void setWood()
 		/*set ray*/
 		int ray = rand() % cfg.maxWoodsRay + 1;
 		/*choose center*/
-		int x = rand() % ((WIDTH-(ray-1))-ray)+ray;
-		int y = rand() % ((HEIGHT-(ray-1))-ray)+ray;
+		int x = randBetween(WIDTH-ray, ray);
+		int y = randBetween(HEIGHT-ray, ray);
 		/*mapping*/
 		for(int j=x-ray;j<x+ray;j++)
 		{
@@ -94,8 +94,8 @@ void setMountain()
 		/*set ray*/
 		int ray = rand() % cfg.maxMountainsRay + 1;
 		/*choose center*/
-		int x = rand() % ((WIDTH-(ray-1))-ray)+ray;
-		int y = rand() % ((HEIGHT-(ray-1))-ray)+ray;
+		int x = randBetween(WIDTH-ray, ray);
+		int y = randBetween(HEIGHT-ray, ray);
 		/*mapping*/
 		for(int j=x-ray;j<x+ray;j++)
 		{

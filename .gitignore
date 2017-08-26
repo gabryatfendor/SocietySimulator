@@ -34,5 +34,6 @@
 # Config file
 /config
 
-# Documentation folder
+# Documentation folder and Doxyfile
 /doc
+/Doxyfile

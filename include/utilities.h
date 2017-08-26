@@ -47,5 +47,12 @@ bool checkAround(int x, int y, char check);
   \param check kind of original terrain to check.
 */
 bool checkAroundOrigin(int x, int y, char check);
+/*! \brief Simplify C++ standard syntax. Return random between 2 integers*/
+/*!
+  \sa randBetween()
+  \param max higher bound.
+  \param min lower bound.
+*/
+int randBetween(int max, int min);
 
 #endif
