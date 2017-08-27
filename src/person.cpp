@@ -96,11 +96,15 @@ void Person::buildVillage()
 void Person::move()
 {
  map[this->position[0]][this->position[1]].villagerHere = false;
- //move random
- if(position[0] < WIDTH-1)
-  this->position[0]++;
- if(position[1] < HEIGHT-1)
-  this->position[1]++;
+ //move along the path
+ //if we have an element in the path
+ if(!this->pathCoordinates.empty())
+ {
+   this->position[0] = get<0>(this->pathCoordinates.front());
+   this->position[1] = get<1>(this->pathCoordinates.front());
+   //remove first element
+   this->pathCoordinates.erase (this->pathCoordinates.begin());
+ }
 
  this->underMe = map[this->position[0]][this->position[1]].kind;
  map[this->position[0]][this->position[1]].villagerHere = true;
