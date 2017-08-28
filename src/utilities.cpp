@@ -32,7 +32,7 @@ bool checkAroundOrigin(int x, int y, char check)
 	 return isCheckAroundMe;
 }
 
-int randBetween(int max, int min)
+int randBetween(int min, int max)
 {
 	return rand() % (max-min+1)+min;
 }
@@ -40,20 +40,21 @@ int randBetween(int max, int min)
 tuple<int, int> findOneFree(char kind)
 {
 	tuple<int, int> free;
-
-	for(int j=0;j<WIDTH;j++)
+	for(int j=0;j<HEIGHT;j++)
  	{
- 		for(int i=0;i<HEIGHT;i++)
+ 		for(int i=0;i<WIDTH;i++)
  		{
 			if (map[i][j].kind == kind &&
-				  !map[i][j].villagerAimingHere &&
-				  !map[i][j].villagerHere)
+				  !map[i][j].villagerAimingHere)
  			{
 				free = make_tuple(i, j);
 				map[i][j].villagerAimingHere = true;
+				goto returnme; //ykes, but from c++ standards this seems to remain the last kind of place in which goto
+											 //it's still good to use, to exit double for loop
 			}
 		}
 	}
 
+	returnme:
 	return free;
 }

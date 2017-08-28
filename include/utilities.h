@@ -50,10 +50,10 @@ bool checkAroundOrigin(int x, int y, char check);
 /*! \brief Simplify C++ standard syntax. Return random between 2 integers*/
 /*!
   \sa randBetween()
-  \param max higher bound.
   \param min lower bound.
+  \param max higher bound.
 */
-int randBetween(int max, int min);
+int randBetween(int min, int max);
 /*! \brief Find one free kind of terrain, starting from top left corner of map*/
 /*!
   \sa findOneFree()

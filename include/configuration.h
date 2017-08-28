@@ -19,7 +19,7 @@
 
 #define WIDTH 80 //max for 15" is 166 X
 #define HEIGHT 20 //max for 15" is 30 Y
-#define POPULATION 5
+#define POPULATION 25
 
 //Key for data extraction from config file
 #define KWIDTH 				"width"

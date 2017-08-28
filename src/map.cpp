@@ -9,7 +9,9 @@ void update()
 	int k,x,y;
 	for(int i=0;i<POPULATION;i++)
 	{
-		people[i].move();
+		people[i].work();
+		if(!people[i].working)
+			people[i].move();
 	}
 
 	if(cfg.automated)
@@ -48,8 +50,8 @@ void setWater()
     for(int i=0;i<lakes;i++)
     {
         int ray = randBetween(1, cfg.maxLakesRay);
-				int x = randBetween(WIDTH-ray, ray);
-				int y = randBetween(HEIGHT-ray, ray);
+				int x = randBetween(ray, WIDTH-ray);
+				int y = randBetween(ray, HEIGHT-ray);
         for(int j=x-ray;j<x+ray;j++)
         {
             for(int k=y-ray;k<y+ray;k++)
@@ -72,8 +74,8 @@ void setWood()
 		/*set ray*/
 		int ray = randBetween(1, cfg.maxWoodsRay);
 		/*choose center*/
-		int x = randBetween(WIDTH-ray, ray);
-		int y = randBetween(HEIGHT-ray, ray);
+		int x = randBetween(ray, WIDTH-ray);
+		int y = randBetween(ray, HEIGHT-ray);
 		/*mapping*/
 		for(int j=x-ray;j<x+ray;j++)
 		{
@@ -94,8 +96,8 @@ void setMountain()
 		/*set ray*/
 		int ray = randBetween(1, cfg.maxMountainsRay);
 		/*choose center*/
-		int x = randBetween(WIDTH-ray, ray);
-		int y = randBetween(HEIGHT-ray, ray);
+		int x = randBetween(ray, WIDTH-ray);
+		int y = randBetween(ray, HEIGHT-ray);
 		/*mapping*/
 		for(int j=x-ray;j<x+ray;j++)
 		{
@@ -136,7 +138,10 @@ void setIsland()
  		{
 			if (map[i][j].villagerHere)
  			{
- 				cout << "\033[1;35m@\033[0m";
+				if(map[i][j].kind == '-')//on a boat!!
+ 					cout << "\033[1;35mB\033[0m";
+				else
+					cout << "\033[1;35m@\033[0m";
  			}
 			else
 			{
