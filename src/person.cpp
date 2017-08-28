@@ -113,10 +113,60 @@ void Person::move()
 vector<tuple<int, int>> Person::setPath()
 {
  vector<tuple<int, int> > path;
+ tuple<int, int> objective = findOneFree(this->preferredTerrain);
 
- path.emplace_back(0, 0);
- path.emplace_back(1, 1);
- path.emplace_back(2, 2);
+ cout << "Objective for kind " << this->preferredTerrain << " was found at " << get<0>(objective) << "," << get<1>(objective) << endl;
+
+ //at the moment, since everything is walkable, move right/left until
+ //pos[x] is equal to objective one, then move straight to objective
+ int x = this->position[0];
+ int y = this->position[1];
+ int objectiveX = get<0>(objective);
+ int objectiveY = get<1>(objective);
+ while(x != objectiveX)
+ {
+   if(x < objectiveX)
+    x++;
+   else
+    x--;
+   path.emplace_back(x,y);
+ }
+ while(y != objectiveY)
+ {
+   if(y < objectiveY)
+    y++;
+   else
+    y--;
+   path.emplace_back(x,y);
+ }
 
  return path;
+}
+
+char Person::setPreferredTerrain()
+{
+  char terrain;
+  switch(this->sector)
+  {
+    case 0:
+      terrain = '|';
+      break;
+    case 1:
+      terrain = '.';
+      break;
+    case 2:
+      terrain = '-';
+      break;
+    case 3:
+      terrain = '^';
+      break;
+    case 4:
+      terrain = '.';
+      break;
+    default:
+      terrain = '.';
+      break;
+  }
+
+  return terrain;
 }

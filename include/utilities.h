@@ -54,5 +54,11 @@ bool checkAroundOrigin(int x, int y, char check);
   \param min lower bound.
 */
 int randBetween(int max, int min);
+/*! \brief Find one free kind of terrain, starting from top left corner of map*/
+/*!
+  \sa findOneFree()
+  \param kind kind of terrain we are looking.
+*/
+tuple<int, int> findOneFree(char kind);
 
 #endif

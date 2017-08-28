@@ -27,13 +27,12 @@ class Person
 {
 	public:
         int sector; /**< The kind of work the person does: 0 woodcutter, 1 farmer, 2 fisher, 3 miner, 4 builder */
-        int tireness; /**< How much the person can work before stopping */
-        int happiness; /**< How much the person is happy (not used at the moment) */
+				char preferredTerrain; /**< Kind of terrain in which such sector works */
+				int tireness; /**< How much the person can work before stopping */
         int position[2]; /**< X and Y position in the map grid */
         char underMe; /**< What kind of terrain there is under the person */
         bool working; /**< Is the person working? */
         bool moving; /**< Is the person moving? */
-        bool tested; /**< Used for testing purpose, will be removed */
 				vector<tuple<int, int>> pathCoordinates; /**< Path the person is following */
 
 				/*! \brief Start fishing job*/
@@ -72,8 +71,14 @@ class Person
 				*/
 				vector<tuple<int, int>> setPath();
 
-        Person() : sector (rand() % 5), tireness(100), happiness(100),
-				working(false), moving(false), tested(false), pathCoordinates(setPath()){};
+				Person() : sector (rand() % 5), preferredTerrain(setPreferredTerrain()),
+				tireness(100), working(false), moving(false){};
         ~Person() {};
+	private:
+				/*! \brief Associate terrain with sector*/
+				/*!
+					\sa setPreferredTerrain()
+				*/
+				char setPreferredTerrain();
 };
 #endif

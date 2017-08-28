@@ -44,10 +44,10 @@ void initMap()
 
 void setWater()
 {
-    int lakes = rand() % cfg.maxLakes + 1;
+    int lakes = randBetween(1, cfg.maxLakes);
     for(int i=0;i<lakes;i++)
     {
-        int ray = rand() % cfg.maxLakesRay + 1;
+        int ray = randBetween(1, cfg.maxLakesRay);
 				int x = randBetween(WIDTH-ray, ray);
 				int y = randBetween(HEIGHT-ray, ray);
         for(int j=x-ray;j<x+ray;j++)
@@ -56,7 +56,7 @@ void setWater()
             {
                 map[j][k].kind='-';
                 map[j][k].origin='-';
-                map[j][k].walkable=false;
+                map[j][k].walkable=true;
             }
         }
     }
@@ -65,12 +65,12 @@ void setWater()
 
 void setWood()
 {
-	int woods = rand() % cfg.maxWoods + 3;
+	int woods = randBetween(1, cfg.maxWoods);
 
 	for(int i=0;i<woods;i++)
 	{
 		/*set ray*/
-		int ray = rand() % cfg.maxWoodsRay + 1;
+		int ray = randBetween(1, cfg.maxWoodsRay);
 		/*choose center*/
 		int x = randBetween(WIDTH-ray, ray);
 		int y = randBetween(HEIGHT-ray, ray);
@@ -88,11 +88,11 @@ void setWood()
 
 void setMountain()
 {
-	int mountains = rand() % cfg.maxMountains + 1;
+	int mountains = randBetween(1, cfg.maxMountains);
 	for(int i=0;i<mountains;i++)
 	{
 		/*set ray*/
-		int ray = rand() % cfg.maxMountainsRay + 1;
+		int ray = randBetween(1, cfg.maxMountainsRay);
 		/*choose center*/
 		int x = randBetween(WIDTH-ray, ray);
 		int y = randBetween(HEIGHT-ray, ray);
@@ -191,6 +191,7 @@ void setIsland()
  		people[k].position[1]=y;
  		people[k].underMe=map[x][y].kind;
  		map[x][y].villagerHere=true;
+		people[k].pathCoordinates = people[k].setPath();
  	}
  	return;
  }

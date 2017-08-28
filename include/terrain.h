@@ -22,6 +22,7 @@ class Terrain
 		bool isRegenerating; /**< Is the terrain recovering its properties? */
 		bool walkable; /**< Is the terrain walkable? */
 		bool villagerHere; /**< Is there a villager onto the terrain? */
+		bool villagerAimingHere; /**< Is a villager coming here? */
 		Terrain() : origin('.'),kind('.'), usable(100),
 		isRegenerating(false), walkable(true), villagerHere(false) {};
 		~Terrain() {};
