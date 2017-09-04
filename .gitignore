@@ -37,3 +37,6 @@
 # Documentation folder and Doxyfile
 /doc
 /Doxyfile
+
+# Symbol folders
+SocietySimulator*

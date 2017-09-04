@@ -14,10 +14,18 @@ Simply clone the repo
   git clone https://www.github.com/gabryatfendor/SocietySimulator
 ```
 Change directory into it and make
+
+For MacOS use the special recipe provided by the Makefile to use the correct libraries
 ```bash
   cd SocietySimulator/
-  make
+  make macos
 ```
+Otherwise, for Linux and Windows, simply make
+```bash
+  cd SocietySimulator/
+  make all
+```
+
 To run the program once installed
 ```bash
   ./SocietySimulator.out
@@ -33,6 +41,11 @@ To build in debug mode simply
   make debug
 ```
 In this way gdb will be available.
+
+On mac use the special provided recipe
+```bash
+  make macos-debug
+```
 
 #### CONFIG:
 
