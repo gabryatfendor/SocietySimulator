@@ -11,14 +11,17 @@ void update()
 	{
 		people[i].work();
 		if(!people[i].working)
+		{
 			people[i].move();
+		}
 	}
 
 	if(cfg.automated)
-		sleep(cfg.speed);
+	sleep(cfg.speed);
 	else
-		getchar();
+	getchar();
 	system("clear");
+
 	return;
 }
 
@@ -27,14 +30,26 @@ void update()
 void initMap()
 {
 	if(cfg.maxLakes>0)
+	{
 		setWater();
+	}
+
 	if(cfg.maxWoods>0)
+	{
 		setWood();
+	}
+
 	if(cfg.maxMountains>0)
+	{
 		setMountain();
-  if(cfg.mapIsland)
-    setIsland();
-  return;
+	}
+
+	if(cfg.mapIsland)
+	{
+		setIsland();
+	}
+
+	return;
 }
 
 /*At the moment there are 4 kind of terrain:
@@ -62,6 +77,7 @@ void setWater()
             }
         }
     }
+
     return;
 }
 
@@ -86,6 +102,8 @@ void setWood()
 			}
 		}
 	 }
+
+	 return;
 }
 
 void setMountain()
@@ -108,6 +126,8 @@ void setMountain()
 			}
 		}
 	 }
+
+	 return;
 }
 
 void setIsland()
@@ -127,76 +147,87 @@ void setIsland()
 			}
 		 }
 	 }
+
+	 return;
  }
 
- /*Print map to screen with colours*/
- void printMap()
- {
- 	for(int j=0;j<HEIGHT;j++)
- 	{
- 		for(int i=0;i<WIDTH;i++)
- 		{
+/*Print map to screen with colours*/
+void printMap()
+{
+	for(int j=0;j<HEIGHT;j++)
+	{
+		for(int i=0;i<WIDTH;i++)
+		{
 			if (map[i][j].villagerHere)
- 			{
+			{
 				if(map[i][j].kind == '-')//on a boat!!
- 					cout << "\033[1;35mB\033[0m";
+				{
+					cout << "\033[1;35mB\033[0m";
+				}
 				else
+				{
 					cout << "\033[1;35m@\033[0m";
- 			}
+				}
+			}
 			else
 			{
-	 			if(map[i][j].kind=='-')
-	 			{
-	 				cout << "\033[1;36m-\033[0m";
-	 			}
-	 			else if (map[i][j].kind=='^')
-	 			{
-	 				cout << "\033[1;31m^\033[0m";
-	 			}
-	 			else if (map[i][j].kind=='|')
-	 			{
-	 				cout << "\033[1;32m|\033[0m";
-	 			}
-	 			else if (map[i][j].kind=='c')
-	 			{
-	 				cout << "\033[1m@\033[0m";
-	 			}
-	 			else if (map[i][j].kind=='x')
-	 			{
-	 				map[i][j].usable++;
-	 				if(map[i][j].usable>=100)
-	 				{
-	 					map[i][j].kind=map[i][j].origin;
-	 				}
-	 				cout << "x";
-	 			}
-	 			else
-	 				cout << "\033[1m"<<map[i][j].kind<<"\033[0m";
+				if(map[i][j].kind=='-')
+				{
+					cout << "\033[1;36m-\033[0m";
+				}
+				else if (map[i][j].kind=='^')
+				{
+					cout << "\033[1;31m^\033[0m";
+				}
+				else if (map[i][j].kind=='|')
+				{
+					cout << "\033[1;32m|\033[0m";
+				}
+				else if (map[i][j].kind=='c')
+				{
+					cout << "\033[1m@\033[0m";
+				}
+				else if (map[i][j].kind=='x')
+				{
+					map[i][j].usable++;
+					if(map[i][j].usable>=100)
+					{
+						map[i][j].kind=map[i][j].origin;
+					}
+					cout << "x";
+				}
+				else
+				{
+					cout << "\033[1m"<<map[i][j].kind<<"\033[0m";
+				}
+
 			}
- 		}
- 		cout << "\n";
- 	}
- 	cout << "Fish: " << fish << "    Wood: " << wood << "    Food: " << food << "    Stone: " << stone << "\n";
- 	return;
- }
+		}
+		cout << "\n";
+	}
+	cout << "Fish: " << fish << "    Wood: " << wood << "    Food: " << food << "    Stone: " << stone << "\n";
 
- /*Assigning random starting point for people*/
- void initPeople()
- {
- 	int x,y;
- 	for(int k=0;k<POPULATION;k++)
- 	{
- 		do
- 		{
- 			x = rand() % WIDTH;
- 			y = rand() % HEIGHT;
- 		} while(map[x][y].villagerHere || map[x][y].kind=='-');
+	return;
+}
 
- 		people[k].position[0]=x;
- 		people[k].position[1]=y;
- 		people[k].underMe=map[x][y].kind;
- 		map[x][y].villagerHere=true;
+/*Assigning random starting point for people*/
+void initPeople()
+{
+	int x,y;
+	for(int k=0;k<POPULATION;k++)
+	{
+		do
+		{
+			x = rand() % WIDTH;
+			y = rand() % HEIGHT;
+		} while(map[x][y].villagerHere || map[x][y].kind=='-');
+
+		people[k].position[0]=x;
+		people[k].position[1]=y;
+		people[k].underMe=map[x][y].kind;
+		map[x][y].villagerHere=true;
 		people[k].pathCoordinates = people[k].setPath();
- 	}
- 	return;
- }
+	}
+
+	return;
+}

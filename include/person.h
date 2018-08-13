@@ -3,7 +3,7 @@
  * \class Person
  * \brief Handle all the data relatives to the Person entity.
  *
- *  In this class all the characteristic of the Person, all the thing it's
+ * In this class all the characteristic of the Person, all the thing it's
  * doing in a certain state, where it wants to go etc. are saved. Probably this
  * class will be later splitted in different kind of person with different
  * generic beahviour (soldiers etc.), but for now, keep it simple.
