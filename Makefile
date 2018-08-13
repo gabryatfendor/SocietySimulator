@@ -1,17 +1,13 @@
 # Retrieve OS, since MacOS need some specific configuration
 OS := $(shell uname)
 
-#Default compile
+#Linked lib for macos
 ifeq ($(OS),Darwin)
 CC=c++
-else
-CC=g++
-endif
-
-# Linked lib for macos
-ifeq ($(OS),Darwin)
 STD=c++11
 STDLIB=libc++
+else
+CC=g++
 endif
 
 #Include directory
