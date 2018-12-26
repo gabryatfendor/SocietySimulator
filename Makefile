@@ -18,8 +18,8 @@ all:
 macos:
 	$(CC) -std=$(STD) -stdlib=$(STDLIB) -I$(INC) src/*.cpp -o SocietySimulator.out
 macos-debug:
-	c++ -std=$(STD) -stdlib=$(STDLIB) -g -I$(INC) src/*.cpp -o SocietySimulator.out
+	$(CC) -std=$(STD) -stdlib=$(STDLIB) -g -I$(INC) src/*.cpp -o SocietySimulator-debug.out
 debug:
-	$(CC) -g -I$(INC) src/*.cpp -o SocietySimulator.out
+	$(CC) -g -I$(INC) src/*.cpp -o SocietySimulator-debug.out
 clean:
 	rm -f *.out
